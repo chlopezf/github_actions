@@ -1,8 +1,23 @@
-name: hola-mundo
-on: [push]
+name: hola_mundo
+
+on: 
+  push:
+
 jobs:
   hola-mundo:
     runs-on: ubuntu-latest
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  # Establece la variable de entorno
+
     steps:
-      - name: Hola mundo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Run Hola Mundo
         run: node hola-mundo.js
